@@ -1,0 +1,90 @@
+/*! Isaac Alejandro López Castrejón | 2018 */
+/*input, textarea
+{
+    border:1px solid #CCC;
+    margin:0px;
+    padding:0px
+}
+
+#log
+{
+    width:330px;
+}
+
+#message
+{
+    width:275px;
+    line-height:40px;
+    font-size: 20px;
+    color:#000;
+    border-radius: 7px;
+}
+
+#inferior
+{
+    width: 350px;
+    height: 380px;
+    color: #4CAF50;
+    background: #fff;
+    position: fixed;
+    right: 0px;
+    bottom: 10px;
+    z-index: 100;
+    border-style: groove;
+    border-color: #46b8da;
+    border-radius: 7px;
+    padding: 5px;
+}*/
+
+#chat
+{
+    -webkit-box-orient: horizontal!important;
+    -webkit-box-direction: reverse!important;
+    -webkit-flex-direction: row-reverse!important;
+    -ms-flex-direction: row-reverse!important;
+    flex-direction: row-reverse!important;
+    align-items: flex-end !important;
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.seccion_chat
+{
+    width: 300px;
+    height: 380px;
+    background: #fff;
+    border-radius: 3px 3px 0 0;
+    margin: 0 3px;
+    padding: 15px 0;
+    box-shadow: 0px 0.1px 0.4px black, 0px 0.1px 4.2px #464646;
+}
+
+#lista_usuarios
+{
+    height: 315px;
+    overflow-y: scroll;
+}
+
+.minilogo
+{
+    width: 30px;
+}
+
+.log
+{
+    height: 262px;
+    background-color: white !important;
+    color: #0275d8;
+}
+
+.message
+{
+    width: 211px !important;
+}
+
+.cursor_pointer
+{
+    cursor: pointer;
+}
