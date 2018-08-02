@@ -21,6 +21,9 @@
         <link rel="stylesheet" href="dist/bootstrap/bootstrap-4.0.0-alpha/css/bootstrap.min.css">
         <script src="dist/bootstrap/bootstrap-4.0.0-alpha/js/bootstrap.min.js"></script>
         <!--Bootstrap-->
+        <!--font-awesome-v-4.7.0-->
+        <link rel="stylesheet" href="dist/fonts/font-awesome-v-4.7.0/css/font-awesome.min.css">
+        <!--font-awesome-v-4.7.0-->
         <!--Scroll Top-->
         <link rel="stylesheet" href="dist/scrolltop/css/scroll.top.css">
         <script src="dist/scrolltop/js/scroll.top.js"></script>
@@ -203,7 +206,7 @@
             </div>
         </div>
         <div id="chat">
-            <div class="seccion_chat">
+            <div id="usuarios" class="seccion_chat">
                 <div class="col">
                     <div class="row">
                         <div class="col">
@@ -225,13 +228,39 @@
                     </div>
                 </div>       
             </div>
-            <div class="seccion_chat">
-                chat 1
-            </div>
-            <div class="seccion_chat">
-                chat 2
+            <div id="seccion_chat_1" class="seccion_chat">
+                <div class="col">
+                    <div class="row">
+                        <div class="col mb-1">
+                            <img class="minilogo" src="img/logoAbrigando.png">
+                            <span class="ml-1">Conversacion 1</span>
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <textarea id='log' class="form-control log" name='log' readonly='readonly'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <form id="enviarMensaje" class="form-inline"name="enviarMensaje" METHOD="POST">
+                                <div class="form-group">
+                                    <input id="message" class="form-control mb-2 mr-sm-2 mb-sm-0 message" type="text" placeholder="Escribe un mensaje">
+                                    <button id="enviar" class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
+        
+        
 <!--            <select id="usuarioRemitente" name='usuarioRemitente'>
                 <option>Seleccionar...</option>
                 <option>Ricardo</option>
@@ -243,14 +272,15 @@
 		<div id="logo"><img src="img/logoAbrigando.png"  width="30"></div>	
 		<textarea id='log' name='log' readonly='readonly' rows="12"></textarea><br/>
 		<form name="enviarMensaje" id="enviarMensaje" METHOD="POST">
-		 <h4><span class="label label-primary">Mensaje</span></h4>
-		<input type='text' id='message' name='message' required placeholder="Escribe un mensaje"/>
-		input type='text' id='usuario' name='usuario' value="<?php echo $Usuario; ?>"
-		<button type="submit" class="btn btn-info btn-lg" id="enviar">
-                <span class="glyphicon glyphicon-send"></span>
-                </button>
+                    <h4><span class="label label-primary">Mensaje</span></h4>
+                    <input type='text' id='message' name='message' required placeholder="Escribe un mensaje"/>
+                    input type='text' id='usuario' name='usuario' value="<?php echo $Usuario; ?>"
+                    <button type="submit" class="btn btn-info btn-lg" id="enviar">
+                    <span class="glyphicon glyphicon-send"></span>
+                    </button>
                 </form>
                 img src="img/btn-enviar.png" width="35"
             </div>-->
+        
     </body>
 </html>
