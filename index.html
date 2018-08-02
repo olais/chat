@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='UTF-8' />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		input, textarea {border:1px solid #CCC;margin:0px;padding:0px}
+
+		
+		#log {width:290px;height:270px}
+		#message {width:230px;line-height:40px;font-size: 20px;color:#000;border-radius: 7px;}
+
+		
+		#inferior {
+	    color: #4CAF50;
+	    background: #fff;
+	    position: fixed;
+	    right: 0px;
+	    bottom: 10px;
+	    z-index: 100;
+	    height: 420px;
+	    width: 300px;
+	    border-style: groove;
+	    border-color: #46b8da;
+	    border-radius: 7px;
+	}
+
+
+
+
+	</style>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="fancywebsocket.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<script>
+		var Server;
+
+	
+
+      function Notifica(asuntoMensaje){
+
+    
+	      if (Notification) {
+	        if (Notification.permission !== "granted") {
+	        Notification.requestPermission()
+	        }
+	       
+	        var title = "Empresa"
+	        var extra = {
+	        icon: "logo.png",
+	        body: asuntoMensaje
+	        }
+	        var noti = new Notification( title, extra)
+	        noti.onclick = {
+	          
+	        }
+	        noti.onclose = {
+	        // Al cerrar
+	        }
+	        setTimeout( function() { noti.close() }, 180000)
+	        }
+	        
+	      }
+
+		function log( text ) {
+			//Notifica(text);
+			$log = $('#log');
+		    $log.append(($log.val()?"\n":'')+text);
+			$log[0].scrollTop = $log[0].scrollHeight - $log[0].clientHeight;
+		}
+
+		function send( text ) {
+			Server.send( 'message', text );
+		}
+
+		$(document).ready(function() {
+			//log('Conectando...');
+			$("#message").focus();
+			Server = new FancyWebSocket('ws://192.168.201.106:9300');
+        	$('#enviarMensaje').submit(function() {
+				//if ( e.keyCode == 13 && this.value ) {
+					mensaje=$('#message').val();
+				    log( 'Yo: ' + mensaje);
+					send(mensaje);
+					$('#message').val('');
+					return false;
+				//}
+			});
+
+			Server.bind('open', function() {
+				log( "Conectado." );
+			});
+
+			Server.bind('close', function( data ) {
+				log( "Desconectado" );
+			});
+			Server.bind('message', function( payload ) {
+				log( payload );
+			});
+
+			Server.connect();
+		});
+	</script>
+</head>
+
+<body>
+<div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">
+
+   <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Perfil</th>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <a href="#">
+          <span class="glyphicon glyphicon-user"></span>
+        </a></td>
+        <td>Ricardo</td>
+        <td>rhernandez@imprimart.com.mx </td>
+        <td><img src="btn-enviar.png" width="35"></td>
+      </tr>
+      <tr>
+        <td> <a href="#">
+          <span class="glyphicon glyphicon-user"></span>
+        </a></td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+        <td><img src="btn-enviar.png" width="35"></td>
+      </tr>
+      <tr>
+        <td> <a href="#">
+          <span class="glyphicon glyphicon-user"></span>
+        </a></td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+        <td><img src="btn-enviar.png" width="35"></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <div class="col-sm-4" style="background-color:lavenderblush;">
+
+    </div>
+    <div class="col-sm-4" style="background-color:lavender;">
+
+    </div>
+  </div>
+	
+	<div id="inferior">
+		<div id="logo"><img src="logo.png" ></div>	
+		<textarea id='log' name='log' readonly='readonly'></textarea><br/>
+		<form name="enviarMensaje" id="enviarMensaje" METHOD="POST">
+		<input type='text' id='message' name='message' />
+		<button type="submit" class="btn btn-info btn-lg" id="enviar">
+        <span class="glyphicon glyphicon-send"></span>
+        </button>
+   	   </form>
+		<!--img src="btn-enviar.png" width="35"-->
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+$(document).ready(function(){
+
+
+var strVar="";
+strVar += "<!doctype html>";
+strVar += "<html>";
+strVar += "<head>";
+strVar += "	<meta charset='UTF-8' \/>";
+strVar += "	<style>";
+strVar += "		input, textarea {border:1px solid #CCC;margin:0px;padding:0px}";
+strVar += "";
+strVar += "		#body {max-width:800px;margin:auto}";
+strVar += "		#log {width:100%;height:400px}";
+strVar += "		#message {width:100%;line-height:20px}";
+strVar += "	<\/style>";
+strVar += "	<script src='https:\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/1.7.1\/jquery.min.js'><\/script>";
+strVar += "	<script src='fancywebsocket.js'><\/script>";
+strVar += "	<script>";
+strVar += "		var Server;";
+strVar += "";
+strVar += "		function log( text ) {";
+strVar += "			$log = $('#log');";
+strVar += "			\/\/Add text to log";
+strVar += "			$log.append(($log.val()?'\n':'')+text);";
+strVar += "			\/\/Autoscroll";
+strVar += "			$log[0].scrollTop = $log[0].scrollHeight - $log[0].clientHeight;";
+strVar += "		}";
+strVar += "";
+strVar += "		function send( text ) {";
+strVar += "			Server.send( 'message', text );";
+strVar += "		}";
+strVar += "";
+strVar += "		$(document).ready(function() {";
+strVar += "			log('Connecting...');";
+strVar += "			Server = new FancyWebSocket('ws:\/\/192.168.14.12:3007');";
+strVar += "";
+strVar += "			$('#message').keypress(function(e) {";
+strVar += "				if ( e.keyCode == 13 && this.value ) {";
+strVar += "					log( 'You: ' + this.value );";
+strVar += "					send( this.value );";
+strVar += "";
+strVar += "					$(this).val('');";
+strVar += "				}";
+strVar += "			});";
+strVar += "";
+strVar += "			\/\/Let the user know we're connected";
+strVar += "			Server.bind('open', function() {";
+strVar += "				log( 'Connected.' );";
+strVar += "			});";
+strVar += "";
+strVar += "			\/\/OH NOES! Disconnection occurred.";
+strVar += "			Server.bind('close', function( data ) {";
+strVar += "				log( 'Disconnected.' );";
+strVar += "			});";
+strVar += "";
+strVar += "			\/\/Log any messages sent from server";
+strVar += "			Server.bind('message', function( payload ) {";
+strVar += "				log( payload );";
+strVar += "			});";
+strVar += "";
+strVar += "			Server.connect();";
+strVar += "		});";
+strVar += "	<\/script>";
+strVar += "<\/head>";
+strVar += "";
+strVar += "<body>";
+strVar += "	<div id='body'>";
+strVar += "		<textarea id='log' name='log' readonly='readonly'><\/textarea><br\/>";
+strVar += "		<input type='text' id='message' name='message' \/>";
+strVar += "	<\/div>";
+strVar += "<\/body>";
+strVar += "";
+strVar += "<\/html>";
+
+
+	
+});
