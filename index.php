@@ -93,7 +93,7 @@
 		$(document).ready(function() {
 			//log('Conectando...');
 			$("#message").focus();
-			Server = new FancyWebSocket('ws://192.168.0.8:9300');
+			Server = new FancyWebSocket('ws://192.168.201.106:9300');
         	$('#enviarMensaje').submit(function() {
 				//if ( e.keyCode == 13 && this.value ) {
 					
@@ -179,13 +179,13 @@
 		<option>Seleccionar...</option>
 		<option>Ricardo</option>
 		<option>Tania</option>
-		<option>Prueba</option>
+		<option>Isacc</option>
 		<option>Otro</option>
 
 	</select>
 	<div id="inferior">
-		<div id="logo"><img src="logoAbrigando.png"  width="123"></div>	
-		<textarea id='log' name='log' readonly='readonly' rows="7"></textarea><br/>
+		<div id="logo"><img src="logoAbrigando.png"  width="30"></div>	
+		<textarea id='log' name='log' readonly='readonly' rows="12"></textarea><br/>
 		<form name="enviarMensaje" id="enviarMensaje" METHOD="POST">
 		 <h4><span class="label label-primary">Mensaje</span></h4>
 		<input type='text' id='message' name='message' required placeholder="Escribe un mensaje"/>
