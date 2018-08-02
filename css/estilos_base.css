@@ -84,6 +84,11 @@
     width: 211px !important;
 }
 
+.fa-window-minimize
+{
+    font-size: 1rem;
+}
+
 .cursor_pointer
 {
     cursor: pointer;

@@ -234,8 +234,11 @@
                         <div class="col mb-1">
                             <img class="minilogo" src="img/logoAbrigando.png">
                             <span class="ml-1">Conversacion 1</span>
-                            <button type="button" class="close" aria-label="Close">
+                            <button type="button" class="close ml-1" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
+                            </button>
+                            <button type="button" class="close" aria-label="Close">
+                                <i class="fa fa-window-minimize" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
