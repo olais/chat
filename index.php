@@ -1,39 +1,33 @@
 <!doctype html>
-<html>
-<head>
-	<meta charset='UTF-8' />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		input, textarea {border:1px solid #CCC;margin:0px;padding:0px}
-
-		
-		#log {width:330px;}
-		#message {width:275px;line-height:40px;font-size: 20px;color:#000;border-radius: 7px;}
-
-		
-		#inferior {
-	    color: #4CAF50;
-	    background: #fff;
-	    position: fixed;
-	    right: 0px;
-	    bottom: 10px;
-	    z-index: 100;
-	    height: 380px;
-	    width: 350px;
-	    border-style: groove;
-	    border-color: #46b8da;
-	    border-radius: 7px;
-	    padding: 5px;
-	}
-
-
-
-
-	</style>
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="fancywebsocket.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+<html lang="es">
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Expires" content="<?php date("D").", ".date("d")." ".date("M")." ".date("Y")." 23:00:00 GMT" ?>">
+        <meta http-equiv="Pragma" content="no-cache">
+        <!--jQuery-->
+        <script src="dist/jquery/jquery-3.3.1.min.js"></script>
+        <!--jQuery-->
+        <!--Normalize-->
+        <link rel="stylesheet" href="dist/normalize/normalize.css">
+        <!--Normalize-->
+        <!--Tether-->
+        <link rel="stylesheet" href="dist/tether-1.3.3/css/tether.min.css">
+        <script src="dist/tether-1.3.3/js/tether.min.js"></script>
+        <!--Tether-->
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="dist/fonts/glyphicons/css/glyphicons.css">
+        <link rel="stylesheet" href="dist/bootstrap/bootstrap-4.0.0-alpha/css/bootstrap.min.css">
+        <script src="dist/bootstrap/bootstrap-4.0.0-alpha/js/bootstrap.min.js"></script>
+        <!--Bootstrap-->
+        <!--Scroll Top-->
+        <link rel="stylesheet" href="dist/scrolltop/css/scroll.top.css">
+        <script src="dist/scrolltop/js/scroll.top.js"></script>
+        <!--Scroll Top-->
+        <link rel="stylesheet" href="css/estilos_base.css">
+	<script src="js/script.base.js"></script>
+	<script src="js/fancywebsocket.js"></script>
 
 	<script>
 		var Server;
@@ -120,84 +114,143 @@
 			Server.connect();
 		});
 	</script>
-</head>
-
-<body>
-
-
-<!--div class="row">
-    <div class="col-sm-4" style="background-color:lavender;">
-
-   <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Perfil</th>
-        <th>Nombre</th>
-        <th>Usuario</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td> <a href="#">
-          <span class="glyphicon glyphicon-user"></span>
-        </a></td>
-        <td>Ricardo</td>
-        <td>rhernandez@imprimart.com.mx </td>
-        <td><img src="btn-enviar.png" width="35"></td>
-      </tr>
-      <tr>
-        <td> <a href="#">
-          <span class="glyphicon glyphicon-user"></span>
-        </a></td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td><img src="btn-enviar.png" width="35"></td>
-      </tr>
-      <tr>
-        <td> <a href="#">
-          <span class="glyphicon glyphicon-user"></span>
-        </a></td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td><img src="btn-enviar.png" width="35"></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-    </div>
-    <div class="col-sm-4" style="background-color:lavenderblush;">
-
-    </div>
-    <div class="col-sm-4" style="background-color:lavender;">
-
-    </div>
-  </div-->
-	<select name='usuarioRemitente' id="usuarioRemitente">
-		<option>Seleccionar...</option>
-		<option>Ricardo</option>
-		<option>Tania</option>
-		<option>Isacc</option>
-		<option>Otro</option>
-
-	</select>
-	<div id="inferior">
-		<div id="logo"><img src="logoAbrigando.png"  width="30"></div>	
+    </head>
+    <body>
+        <div id="esto_es_solo_prueba_de_contenido" class="container">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <form>
+                            <div class="form-group">
+                                <label for="usuarioRemitente">Usuario</label>
+                                <select id="usuarioRemitente" name='usuarioRemitente' class="form-control">
+                                    <option>Selecciona un usuario...</option>
+                                    <option>Ricardo</option>
+                                    <option>Tania</option>
+                                    <option>Isaac</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelect1">Example select</label>
+                                <select class="form-control" id="exampleSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelect2">Example multiple select</label>
+                                <select multiple class="form-control" id="exampleSelect2">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleTextarea">Example textarea</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                            </div>
+                            <fieldset class="form-group">
+                                <legend>Radio buttons</legend>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        Option one is this and that&mdash;be sure to include why it's great
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                                        Option two can be something else and selecting it will deselect option one
+                                    </label>
+                                </div>
+                                <div class="form-check disabled">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+                                        Option three is disabled
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input">
+                                    Check me out
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="chat">
+            <div class="seccion_chat">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <h4>Selecciona un Usuario</h4>
+                            <div id="lista_usuarios">
+                                <ul class="list-group">
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Ricardo</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Tania</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Isaac</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Paty</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Carlos</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Roberto</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Paco</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Laura</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer">Otro</a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>       
+            </div>
+            <div class="seccion_chat">
+                chat 1
+            </div>
+            <div class="seccion_chat">
+                chat 2
+            </div>
+        </div>
+<!--            <select id="usuarioRemitente" name='usuarioRemitente'>
+                <option>Seleccionar...</option>
+                <option>Ricardo</option>
+                <option>Tania</option>
+                <option>Isacc</option>
+                <option>Otro</option>
+            </select>
+            <div id="inferior">
+		<div id="logo"><img src="img/logoAbrigando.png"  width="30"></div>	
 		<textarea id='log' name='log' readonly='readonly' rows="12"></textarea><br/>
 		<form name="enviarMensaje" id="enviarMensaje" METHOD="POST">
 		 <h4><span class="label label-primary">Mensaje</span></h4>
 		<input type='text' id='message' name='message' required placeholder="Escribe un mensaje"/>
-		<!--input type='text' id='usuario' name='usuario' value="<?php echo $Usuario; ?>"-->
+		input type='text' id='usuario' name='usuario' value="<?php echo $Usuario; ?>"
 		<button type="submit" class="btn btn-info btn-lg" id="enviar">
-        <span class="glyphicon glyphicon-send"></span>
-        </button>
-   	   </form>
-		<!--img src="btn-enviar.png" width="35"-->
-
-	</div>
-
-</body>
-
+                <span class="glyphicon glyphicon-send"></span>
+                </button>
+                </form>
+                img src="img/btn-enviar.png" width="35"
+            </div>-->
+    </body>
 </html>
