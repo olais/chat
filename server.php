@@ -23,7 +23,8 @@ function wsOnMessage($clientID, $message, $messageLength, $binary) {
 		//Send the message to everyone but the person who said it
 		foreach ( $Server->wsClients as $id => $client )
 			if ( $id != $clientID )
-				$Server->wsSend($id, "Usuario ($ip) dice:  $message");
+				//$Server->wsSend($id, "Usuario ($ip) dice:  $message");
+			    $Server->wsSend($id, "$message");
 }
 
 // when a client connects
@@ -32,7 +33,7 @@ function wsOnOpen($clientID)
 	global $Server;
 	$ip = long2ip( $Server->wsClients[$clientID][6] );
 
-	$Server->log( "$ip ($clientID) has connected." );
+	$Server->log( "$ip ($clientID) conectado." );
 
 	//Send a join notice to everyone but the person who joined
 	foreach ( $Server->wsClients as $id => $client )
@@ -45,7 +46,7 @@ function wsOnClose($clientID, $status) {
 	global $Server;
 	$ip = long2ip( $Server->wsClients[$clientID][6] );
 
-	$Server->log( "$ip ($clientID) has disconnected." );
+	$Server->log( "$ip ($clientID) desconectado." );
 
 	//Send a user left notice to everyone in the room
 	foreach ( $Server->wsClients as $id => $client )
@@ -59,6 +60,6 @@ $Server->bind('open', 'wsOnOpen');
 $Server->bind('close', 'wsOnClose');
 // for other computers to connect, you will probably need to change this to your LAN IP or external IP,
 // alternatively use: gethostbyaddr(gethostbyname($_SERVER['SERVER_NAME']))
-$Server->wsStartServer('192.168.201.106', 9300);
+$Server->wsStartServer('192.168.0.8', 9300);
 
 ?>

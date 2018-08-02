@@ -42,7 +42,7 @@
 
 		var usuario="<?php echo $_REQUEST['Usuario']; ?>";
 		
-		var usuarioDestino="Tania";
+		//var usuarioDestino="Ricardo";
 
 
 
@@ -75,12 +75,12 @@
 			//Notifica(text);
 
 		var res = text.split(",");
-		//alert(res);
+		alert(res);
 
 		//alert(res[0]);
-        if(res[1]==usuario || res[0]==usuario){//aqui será la variable de sesión
+         if(res[1]==usuario || res[0]==res[1]){//aqui será la variable de sesión
 			$log = $('#log');
-		    $log.append(($log.val()?"\n":'')+res[0]+": "+res[2]);
+		    $log.append(($log.val()?"\n":'')+res[0]+":"+res[2]);
 			$log[0].scrollTop = $log[0].scrollHeight - $log[0].clientHeight;
 		
 		 }
