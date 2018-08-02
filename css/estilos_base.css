@@ -65,6 +65,7 @@
 {
     height: 315px;
     overflow-y: scroll;
+   box-shadow: inset 0px 0px 2.9px #7e7e7e;
 }
 
 .minilogo
@@ -77,6 +78,7 @@
     height: 262px;
     background-color: white !important;
     color: #0275d8;
+    box-shadow: inset 0px 0px 2.9px #7e7e7e;
 }
 
 .message
