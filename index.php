@@ -37,7 +37,7 @@
 		var Server;
 
 		
-		$('<audio id="audio_fb"> <source src="beep.wav" type="audio/mpeg"></audio>').appendTo("body");
+		$('<audio id="audio_fb"> <source src="audio/beep.wav" type="audio/mpeg"></audio>').appendTo("body");
 		var IdUsuario="<?php echo $_REQUEST['idUsuario']; ?>";
 		
 		var Usuario="<?php echo $_REQUEST['Usuario']; ?>";
@@ -149,7 +149,7 @@
 	</script>
     </head>
     <body>
-    <audio src="beep.wav" preload="auto" id="audio_fb"></audio>
+    <audio src="audio/beep.wav" preload="auto" id="audio_fb"></audio>
         <div id="esto_es_solo_prueba_de_contenido" class="container">
             <div class="col">
                 <div class="row">
@@ -301,7 +301,7 @@
                 <option>Seleccionar...</option>
                 <option>Ricardo</option>
                 <option>Tania</option>
-                <option>Isacc</option>
+                <option>Isaac</option>
                 <option>Otro</option>
             </select>
             <div id="inferior">
