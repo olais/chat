@@ -32,14 +32,15 @@
 	<script src="js/script.base.js"></script>
 	<script src="js/fancywebsocket.js"></script>
 
+
 	<script>
 		var Server;
 
 		
-
-		var usuario="<?php echo $_REQUEST['Usuario']; ?>";
+		$('<audio id="audio_fb"> <source src="beep.wav" type="audio/mpeg"></audio>').appendTo("body");
+		var IdUsuario="<?php echo $_REQUEST['idUsuario']; ?>";
 		
-		var usuarioDestino="Tania";
+		var Usuario="<?php echo $_REQUEST['Usuario']; ?>";
 
 
 
@@ -65,19 +66,38 @@
 	        }
 	        setTimeout( function() { noti.close() }, 180000)
 	        }
-	        
+	        	
 	      }
 
 		function log( text ) {
 			//Notifica(text);
 
+
 		var res = text.split(",");
 		//alert(res);
 
 		//alert(res[0]);
-        if(res[1]==usuario || res[0]==usuario){//aqui será la variable de sesión
+			
+			
+
+        if(res[1]==IdUsuario || res[0]==IdUsuario){//aqui será la variable de sesión
+
+        	if(res[1] == IdUsuario){
+
+        		$("#"+res[0]).trigger("click");
+        		$('#audio_fb')[0].play();
+        		
+
+        	}
+
+        	
+        	
+        		
+        		
+
+
 			$log = $('#log');
-		    $log.append(($log.val()?"\n":'')+res[0]+": "+res[2]);
+		    $log.append(($log.val()?"\n":'')+res[5]+' '+res[4]+": "+res[2]);
 			$log[0].scrollTop = $log[0].scrollHeight - $log[0].clientHeight;
 		
 		 }
@@ -89,12 +109,18 @@
 
 		$(document).ready(function() {
 			//log('Conectando...');
+
 			$("#message").focus();
-			Server = new FancyWebSocket('ws://192.168.201.106:9300');
+			Server = new FancyWebSocket('ws://192.168.0.8:9300');
         	$('#enviarMensaje').submit(function() {
 				//if ( e.keyCode == 13 && this.value ) {
 					
-					mensaje=usuario+','+$("#usuarioRemitente").val()+','+$('#message').val();//usuario a comunicar
+					 valorUsuario=$(".active").attr('id');
+					 //$("#"+valorUsuario).text();
+					// alert($("#"+valorUsuario).text());
+
+
+					mensaje=IdUsuario+','+valorUsuario+','+$('#message').val()+','+$("#"+valorUsuario).text()+','+Usuario+','+'<?php echo date('Y-m-d H:i:s')?>' ;//usuario a comunicar
 				    log(mensaje);
 
 					send(mensaje);
@@ -102,6 +128,10 @@
 					return false;
 				//}
 			});
+
+
+
+
 
 			Server.bind('open', function() {
 				log( "Conectado." );
@@ -119,6 +149,7 @@
 	</script>
     </head>
     <body>
+    <audio src="beep.wav" preload="auto" id="audio_fb"></audio>
         <div id="esto_es_solo_prueba_de_contenido" class="container">
             <div class="col">
                 <div class="row">
@@ -213,9 +244,9 @@
                             <h4>Selecciona un Usuario</h4>
                             <div id="lista_usuarios">
                                 <ul class="list-group">
-                                    <a class="list-group-item list-group-item-action cursor_pointer">Ricardo</a>
-                                    <a class="list-group-item list-group-item-action cursor_pointer">Tania</a>
-                                    <a class="list-group-item list-group-item-action cursor_pointer">Isaac</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer" id="123Ricardo">Ricardo</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer" id="123Tania">Tania</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer" id="123Isaac">Isaac</a>
                                     <a class="list-group-item list-group-item-action cursor_pointer">Paty</a>
                                     <a class="list-group-item list-group-item-action cursor_pointer">Carlos</a>
                                     <a class="list-group-item list-group-item-action cursor_pointer">Roberto</a>
@@ -228,7 +259,8 @@
                     </div>
                 </div>       
             </div>
-            <div id="seccion_chat_1" class="seccion_chat">
+
+           <div id="seccion_chat_1" class="seccion_chat">
                 <div class="col">
                     <div class="row">
                         <div class="col mb-1">
@@ -261,6 +293,7 @@
                     </div>
                 </div> 
             </div>
+
         </div>
         
         
