@@ -42,7 +42,11 @@
 		
 		var Usuario="<?php echo $_REQUEST['Usuario']; ?>";
 
-
+        function scroll_to(div){
+            $('html, body').animate({
+                scrollTop: $("mydiv").offset().top
+            },1000);
+        }
 
       function Notifica(asuntoMensaje){
 
@@ -85,26 +89,30 @@
         	if(res[1] == IdUsuario){
 
         		$("#"+res[0]).trigger("click");
-                //alert(res[0]);
+               // alert(res[0]);
+              
                 //$(".ml-1").html("Conversacionp con :"+res[5]);
-                alineacion='text-align:left !mportant;';
+               
         		$('#audio_fb')[0].play();
-        	}
 
+
+        	}
+             if(res[0] != IdUsuario){
+                  alineacion='text-align:left !mportant;';
+                  color="#D4EFDF";
+
+             }else{
+                 alineacion='text-align:right !mportant;';
+                 color="#E4EBE7";
+             }
                  
             
 
             //alert(alineacion);
         
 			$log = $('#log');
-//$log.append("<div class='msj' style='color:red !important; width:auto; height:auto;background-color:#A9A7A7;"+alineacion+"border-radius:7px;padding:10px;color:#fff !important;margin-top:1px; font-size:11px;'>"+res[5]+' '+res[4]+": "+res[2]+"</div>");
-		   $log.append(($log.val()?"\n":'')+res[5]+' '+res[4]+": "+res[2]);
-
-
-
-
-
-			$log[0].scrollTop = $log[0].scrollHeight - $log[0].clientHeight;
+$log.append(($log.val()?"\n":'')+"<div class='msj' style='color:red !important;height:auto !important;background-color:"+color+";"+alineacion+"border-radius:16px;padding:10px;color:#000 !important;margin-top:1px; font-size:14px;'>"+res[5]+' '+res[4]+": "+res[2]+"</div>");
+          $("#log").animate({ scrollTop: $('#log')[0].scrollHeight}, 0);
 		
 		 }
 		
@@ -123,11 +131,8 @@
 				//if ( e.keyCode == 13 && this.value ) {
 					
 					 valorUsuario=$(".active").attr('id');
-					 //$("#"+valorUsuario).text();
-					// alert($("#"+valorUsuario).text());
-
-
-					mensaje=IdUsuario+','+valorUsuario+','+$('#message').val()+','+$("#"+valorUsuario).text()+','+Usuario+','+'<?php echo date('Y-m-d H:i:s')?>' ;//usuario a comunicar
+					
+		mensaje=IdUsuario+','+valorUsuario+','+$('#message').val()+','+$("#"+valorUsuario).text()+','+Usuario+','+'<?php echo date('Y-m-d H:i:s')?>' ;//usuario a comunicar
 				    log(mensaje);
 
 					send(mensaje);
@@ -135,8 +140,6 @@
 					return false;
 				//}
 			});
-
-
 
 
 
@@ -284,7 +287,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <textarea id='log' class="form-control log" name='log' readonly='readonly'></textarea>
+                                <!--textarea id='log' class="form-control log" name='log' readonly='readonly'></textarea-->
+                                <div id='log' class='log'></div>
                             </div>
                         </div>
                     </div>
@@ -292,6 +296,7 @@
                         <div class="col">
                             <form id="enviarMensaje" class="form-inline"name="enviarMensaje" METHOD="POST">
                                 <div class="form-group">
+                                     <!--textarea class="form-control" id="message" rows="3" class="form-control mb-2 mr-sm-2 mb-sm-0 message"></textarea-->
                                     <input id="message" class="form-control mb-2 mr-sm-2 mb-sm-0 message" type="text" placeholder="Escribe un mensaje">
                                     <button id="enviar" class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                 </div>
