@@ -118,7 +118,7 @@
 			//log('Conectando...');
             alineacion='text-align:right !mportant;';
 			$("#message").focus();
-			Server = new FancyWebSocket('ws://192.168.0.8:9300');
+			Server = new FancyWebSocket('ws://192.168.201.106:9300');
         	$('#enviarMensaje').submit(function() {
 				//if ( e.keyCode == 13 && this.value ) {
 					
