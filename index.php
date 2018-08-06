@@ -85,23 +85,30 @@
         	if(res[1] == IdUsuario){
 
         		$("#"+res[0]).trigger("click");
+                //alert(res[0]);
+                //$(".ml-1").html("Conversacionp con :"+res[5]);
+                alineacion='text-align:left !mportant;';
         		$('#audio_fb')[0].play();
-        		
-
         	}
 
-        	
-        	
-        		
-        		
+                 
+            
 
-
+            //alert(alineacion);
+        
 			$log = $('#log');
-		    $log.append(($log.val()?"\n":'')+res[5]+' '+res[4]+": "+res[2]);
+//$log.append("<div class='msj' style='color:red !important; width:auto; height:auto;background-color:#A9A7A7;"+alineacion+"border-radius:7px;padding:10px;color:#fff !important;margin-top:1px; font-size:11px;'>"+res[5]+' '+res[4]+": "+res[2]+"</div>");
+		   $log.append(($log.val()?"\n":'')+res[5]+' '+res[4]+": "+res[2]);
+
+
+
+
+
 			$log[0].scrollTop = $log[0].scrollHeight - $log[0].clientHeight;
 		
 		 }
-		}
+		
+        }
 
 		function send( text ) {
 			Server.send( 'message', text );
@@ -109,9 +116,9 @@
 
 		$(document).ready(function() {
 			//log('Conectando...');
-
+            alineacion='text-align:right !mportant;';
 			$("#message").focus();
-			Server = new FancyWebSocket('ws://192.168.0.8:9300');
+			Server = new FancyWebSocket('ws://192.168.201.106:9300');
         	$('#enviarMensaje').submit(function() {
 				//if ( e.keyCode == 13 && this.value ) {
 					
