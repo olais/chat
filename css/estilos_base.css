@@ -81,7 +81,7 @@
     color: #0275d8;
     box-shadow: inset 0px 0px 2.9px #7e7e7e;
     overflow-y: scroll;
-    overflow-y:hidden;
+    //overflow-y:hidden;
    
 
 }

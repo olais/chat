@@ -100,10 +100,12 @@
              if(res[0] != IdUsuario){
                   alineacion='text-align:left !mportant;';
                   color="#D4EFDF";
+                  largo="225px";
 
              }else{
                  alineacion='text-align:right !mportant;';
-                 color="#E4EBE7";
+                 color="#D6DBDF";
+                 largo="247px"; 
              }
                  
             
@@ -111,7 +113,8 @@
             //alert(alineacion);
         
 			$log = $('#log');
-$log.append(($log.val()?"\n":'')+"<div class='msj' style='color:red !important;height:auto !important;background-color:"+color+";"+alineacion+"border-radius:16px;padding:10px;color:#000 !important;margin-top:1px; font-size:14px;'>"+res[5]+' '+res[4]+": "+res[2]+"</div>");
+$log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red !important;height:auto !important;overflow-y:hidden;width:"+largo+";background-color:"+color+";"+alineacion+"border-radius:19px;float:right;padding-top:18px;color:#000 !important;margin-top:3px; font-size:14px;'>"+res[5]+' '+res[4]+": "+res[2]+"</div>");
+          $(".msj").animate({ scrollTop: $('#log')[0].scrollHeight}, 0);
           $("#log").animate({ scrollTop: $('#log')[0].scrollHeight}, 0);
 		
 		 }
@@ -126,7 +129,7 @@ $log.append(($log.val()?"\n":'')+"<div class='msj' style='color:red !important;h
 			//log('Conectando...');
             alineacion='text-align:right !mportant;';
 			$("#message").focus();
-			Server = new FancyWebSocket('ws://192.168.201.106:9300');
+			Server = new FancyWebSocket('ws://192.168.0.8:9300');
         	$('#enviarMensaje').submit(function() {
 				//if ( e.keyCode == 13 && this.value ) {
 					
@@ -297,7 +300,7 @@ $log.append(($log.val()?"\n":'')+"<div class='msj' style='color:red !important;h
                             <form id="enviarMensaje" class="form-inline"name="enviarMensaje" METHOD="POST">
                                 <div class="form-group">
                                      <!--textarea class="form-control" id="message" rows="3" class="form-control mb-2 mr-sm-2 mb-sm-0 message"></textarea-->
-                                    <input id="message" class="form-control mb-2 mr-sm-2 mb-sm-0 message" type="text" placeholder="Escribe un mensaje">
+                                    <input id="message" class="form-control mb-2 mr-sm-2 mb-sm-0 message" type="text" placeholder="Escribe un mensaje"  autocomplete="off">
                                     <button id="enviar" class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                 </div>
                             </form>
