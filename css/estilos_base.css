@@ -104,3 +104,16 @@
 
     color:#fff ;
 }
+#escribiendo{
+
+    width: auto !important;
+    height:15px !important;
+    margin-top: -60.5px !important; 
+    color:#fff;
+}
+.conectado{
+
+    float: right !important;
+    background-color:blue;
+  
+}
