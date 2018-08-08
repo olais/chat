@@ -88,12 +88,17 @@
 
         	if(res[1] == IdUsuario){
 
+                if(res[6]!=1 & res[6]!=0){
         		$("#"+res[0]).trigger("click");
-               // alert(res[0]);
-              
-                //$(".ml-1").html("Conversacionp con :"+res[5]);
-               
-        		$('#audio_fb')[0].play();
+                $('#audio_fb')[0].play();
+                }
+                //mostrar el mesaje de escribiendo
+                    if(res[6]==1){
+                         $("#escribiendo").html(res[4]+" Escribiendo...");
+                    }
+                    if(res[6]==0){
+                         $("#escribiendo").html("");
+                    }
 
 
         	}
@@ -108,14 +113,17 @@
                  largo="247px"; 
              }
                  
-            
-
-            //alert(alineacion);
         
+       
+        if(res[6]=="null" & res[6]!=1 & res[6]!=0 ){
 			$log = $('#log');
+       
 $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red !important;height:auto !important;overflow-y:hidden;width:"+largo+";background-color:"+color+";"+alineacion+"border-radius:19px;float:right;padding-top:18px;color:#000 !important;margin-top:3px; font-size:14px;'>"+res[5]+' '+res[4]+": "+res[2]+"</div>");
           $(".msj").animate({ scrollTop: $('#log')[0].scrollHeight}, 0);
           $("#log").animate({ scrollTop: $('#log')[0].scrollHeight}, 0);
+
+           }
+
 		
 		 }
 		
@@ -132,19 +140,44 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
 			Server = new FancyWebSocket('ws://192.168.0.8:9300');
         	$('#enviarMensaje').submit(function() {
 				//if ( e.keyCode == 13 && this.value ) {
-					
-					 valorUsuario=$(".active").attr('id');
-					
-		mensaje=IdUsuario+','+valorUsuario+','+$('#message').val()+','+$("#"+valorUsuario).text()+','+Usuario+','+'<?php echo date('Y-m-d H:i:s')?>' ;//usuario a comunicar
+		escribiendo="null";
+		valorUsuario=$(".active").attr('id');
+		mensaje=IdUsuario+','+valorUsuario+','+$('#message').val()+','+$("#"+valorUsuario).text()+','+Usuario+','+'<?php echo date('Y-m-d H:i:s')?>'+','+escribiendo ;//usuario a comunicar
 				    log(mensaje);
 
 					send(mensaje);
+
 					$('#message').val('');
 					return false;
 				//}
 			});
 
+            $("#message").keyup(function(){
+                if($("#message").val()!=""){
+                    
+                     escribiendo=1;
+                }else{
+                    
+                    escribiendo=0;
+                }
 
+        valorUsuario=$(".active").attr('id');
+        mensaje=IdUsuario+','+valorUsuario+','+$('#message').val()+','+$("#"+valorUsuario).text()+','+Usuario+','+'<?php echo date('Y-m-d H:i:s')?>'+','+escribiendo ;//usuario a comunicar
+                    log(mensaje);
+                   send(mensaje);
+
+       
+            });
+
+           /* $('#enviarMensaje input[type=text]').on('change invalid', function() {
+                var campotexto = $(this).get(0);
+
+                campotexto.setCustomValidity('');
+
+                if (!campotexto.validity.valid) {
+                  campotexto.setCustomValidity('Escribe un mensaje');  
+                }
+            });*/
 
 			Server.bind('open', function() {
 				log( "Conectado." );
@@ -257,7 +290,9 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
                             <h4>Selecciona un Usuario</h4>
                             <div id="lista_usuarios">
                                 <ul class="list-group">
-                                    <a class="list-group-item list-group-item-action cursor_pointer" id="123Ricardo">Ricardo</a>
+                                    <a class="list-group-item list-group-item-action cursor_pointer" id="123Ricardo">Ricardo
+                                    <input type="radio" name="optradio" checked class="conectado">
+                                   </a>
                                     <a class="list-group-item list-group-item-action cursor_pointer" id="123Tania">Tania</a>
                                     <a class="list-group-item list-group-item-action cursor_pointer" id="123Isaac">Isaac</a>
                                     <a class="list-group-item list-group-item-action cursor_pointer">Paty</a>
@@ -282,9 +317,13 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
                             <button type="button" class="close ml-1" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+                             <button type="button" class="close" aria-label="Close">
+                                <i class="fa fa-window-maximize" aria-hidden="true"></i>
+                            </button>
                             <button type="button" class="close" aria-label="Close">
                                 <i class="fa fa-window-minimize" aria-hidden="true"></i>
                             </button>
+                            
                         </div>
                     </div>
                     <div class="row">
@@ -297,13 +336,16 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
                     </div>
                     <div class="row">
                         <div class="col">
+
                             <form id="enviarMensaje" class="form-inline"name="enviarMensaje" METHOD="POST">
                                 <div class="form-group">
                                      <!--textarea class="form-control" id="message" rows="3" class="form-control mb-2 mr-sm-2 mb-sm-0 message"></textarea-->
-                                    <input id="message" class="form-control mb-2 mr-sm-2 mb-sm-0 message" type="text" placeholder="Escribe un mensaje"  autocomplete="off">
+
+                                    <input id="message" class="form-control mb-2 mr-sm-2 mb-sm-0 message" type="text" placeholder="Escribe un mensaje"  autocomplete="off"  required >
                                     <button id="enviar" class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                 </div>
                             </form>
+                             <div id="escribiendo"></div>
                         </div>
                     </div>
                 </div> 
