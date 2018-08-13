@@ -124,7 +124,7 @@ ul.emoji-list * {
       user-select: none;
     }
     ul.emoji-list li {
-      font-size: 20px;
+      font-size: 16px;
       float: left;
       display: inline-block;
       padding: 2px;
