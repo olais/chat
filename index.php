@@ -42,6 +42,7 @@
 		var IdUsuario="<?php echo $_REQUEST['idUsuario']; ?>";
 		
 		var Usuario="<?php echo $_REQUEST['Usuario']; ?>";
+        var Sesion="<?php echo $_REQUEST['Sesion']; ?>";
 
         function scroll_to(div){
             $('html, body').animate({
@@ -138,7 +139,7 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
 			//log('Conectando...');
             alineacion='text-align:right !mportant;';
 			$("#message").focus();
-			Server = new FancyWebSocket('ws://192.168.0.8:9300');
+			Server = new FancyWebSocket('ws://192.168.0.9:9300');
         	$('#enviarMensaje').submit(function() {
 				//if ( e.keyCode == 13 && this.value ) {
 		escribiendo="null";
@@ -170,6 +171,17 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
        
             });
 
+    // $("#arrancaSesion").click(function(){
+        if(Sesion==1){
+            // log("prueba de enlace");
+             //send("prueba de enlace");
+        }
+             
+
+       // });
+
+         
+
            /* $('#enviarMensaje input[type=text]').on('change invalid', function() {
                 var campotexto = $(this).get(0);
 
@@ -196,7 +208,8 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
 	</script>
     </head>
     <body>
-       
+
+    
       <ul class="emoji-list">
       <li>&#x1F004;</li>
       <li>&#x1F0CF;</li>
@@ -1073,7 +1086,7 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
       <li>&#xAE;</li>
       <li>&#xE50A;</li>
     </ul>
-    <script>
+    <!--script>
     var ul = document.getElementsByTagName('ul')[0];
     var total = ul.getElementsByTagName('li').length;
     var elapsed = +new Date;
@@ -1092,7 +1105,7 @@ $log.append(($log.val()?"\n":'')+"<div class='msj form-control' style='color:red
       document.getElementsByTagName('img'),
       /\b(?:Mac |i)OS\b/i.test(navigator.userAgent) ? 'Command' : 'Ctrl'
     ));
-    </script>
+    </script-->
     <audio src="audio/beep.wav" preload="auto" id="audio_fb"></audio>
         <div id="esto_es_solo_prueba_de_contenido" class="container">
             <div class="col">
